@@ -1,0 +1,61 @@
+<script type="text/javascript">
+
+function GJfunctionUrl() {
+	var s_scheme = document.getElementById("s_scheme");
+	var scheme = s_scheme.options[s_scheme.selectedIndex].text;
+
+	var s_host = document.getElementById("s_host");
+	var host = s_host.options[s_host.selectedIndex].text;
+
+	var actionCode = document.getElementById("actionCode").value;
+	var actionValue = document.getElementById("actionValue").value;
+
+	var link = scheme+"://"+host+"?actioncode="+actionCode+"&actionvalue="+actionValue;
+
+	document.getElementById("text").setAttribute("value",""+link);
+	return link;
+}
+
+function GJfunction(){
+	self.location = GJfunctionUrl();
+}
+
+function selectedValueChange() {
+	GJfunctionUrl();
+}
+
+</script>
+
+<body>
+	<input type="button" onclick="javascript:window.location.reload()" value="刷新页面" />
+		<br>
+		<br>
+
+	<label>scheme:</label>
+	<select id="s_scheme" onchange="selectedValueChange()">
+	  <option value="scheme1">en51ccm</option>
+	  <option value="scheme2">en51cc</option>
+	  <option value="scheme3">en51ccmpro</option>
+	</select>
+
+	<label>host:</label>
+	<select id="s_host" onchange="selectedValueChange()" >
+	  <option value="host1">start</option>
+	  <option value="host2">app.u51.com</option>
+	  <option value="host3">startapp</option>
+  </select>
+
+			<br>
+  		<br>
+  <label>actionCode: </label>
+	<input type="text" id="actionCode" value="62" style="width:80px; height:40px;"/>
+			<br>
+	<label>actionValue: </label>
+	<input type="text" id="actionValue" value="43825360" style="width:80px; height:40px;"/>
+			<br>
+			<br>
+	<input type="text" id="text" style="width:600px; height:50px;" value="en51ccm://start?"/>
+			<br>
+			<br>
+	<input type="button" onclick="GJfunction()" value="执行管家透传"/>
+</body>
