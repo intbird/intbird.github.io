@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-function GJfunctionUrl() {
+function reshownUrl() {
 	var s_scheme = document.getElementById("s_scheme");
 	var scheme = s_scheme.options[s_scheme.selectedIndex].text;
 
@@ -17,45 +17,68 @@ function GJfunctionUrl() {
 }
 
 function GJfunction(){
-	self.location = GJfunctionUrl();
+	var location = reshownUrl();
+	self.location = location;
+	document.getElementById("histroy").innerHTML +="<br>"+location;
 }
 
 function selectedValueChange() {
-	GJfunctionUrl();
+	reshownUrl();
 }
 
+function onBlurCode() {
+	reshownUrl();
+}
+
+function onBlurValue(){
+	reshownUrl();
+}
+
+function clearActionCode() {
+		document.getElementById("actionCode").value = "";
+		reshownUrl();
+}
+
+function clearActionValue() {
+		document.getElementById("actionValue").value = "";
+		reshownUrl();
+}
 </script>
 
-<body>
+<body onload="reshownUrl()">
 	<input type="button" onclick="javascript:window.location.reload()" value="刷新页面" />
 		<br>
 		<br>
-
 	<label>scheme:</label>
 	<select id="s_scheme" onchange="selectedValueChange()">
 	  <option value="scheme1">en51ccm</option>
 	  <option value="scheme2">en51cc</option>
 	  <option value="scheme3">en51ccmpro</option>
 	</select>
-
 	<label>host:</label>
 	<select id="s_host" onchange="selectedValueChange()" >
 	  <option value="host1">start</option>
 	  <option value="host2">app.u51.com</option>
 	  <option value="host3">startapp</option>
   </select>
-
 			<br>
   		<br>
   <label>actionCode: </label>
-	<input type="text" id="actionCode" value="62" style="width:80px; height:40px;"/>
+	<input type="text" id="actionCode" onblur="onBlurCode()" style="width:80px; height:40px;"  value="11" />
+		<input type="button" onclick="clearActionCode()" value="clear"/>
 			<br>
 	<label>actionValue: </label>
-	<input type="text" id="actionValue" value="43825360" style="width:80px; height:40px;"/>
+	<input type="text" id="actionValue" onblur="onBlurValue()" style="width:80px; height:40px;" value="65276866" />
+		<input type="button" onclick="clearActionValue()" value="clear"/>
 			<br>
 			<br>
+	<label>actionUrl:</label>
 	<input type="text" id="text" style="width:600px; height:50px;" value="en51ccm://start?"/>
 			<br>
 			<br>
 	<input type="button" onclick="GJfunction()" value="执行管家透传"/>
+	<br>
+	<br>
+	<br>
+ <div id="histroy"></div>
 </body>
